@@ -5,9 +5,9 @@ import ViewInvoice from "./ViewInvoice";
 const Invoices = () => {
     return (
         <>
+            <ViewInvoice />
             <InvoiceCards />
             <NewInvoice />
-            <ViewInvoice />
         </>
     );
 }
