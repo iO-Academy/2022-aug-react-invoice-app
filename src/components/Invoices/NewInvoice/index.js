@@ -12,6 +12,31 @@ const NewInvoice = () => {
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body px-3 overflow-auto">
+                            <div className="container">
+                                <div className="col-6">
+                                    <div>
+                                        <h6>From</h6>
+                                        <ul className="list-unstyled">
+                                            <li>Kermit the Frog</li>
+                                            <li>Kermit's Swamp</li>
+                                            <li>Beverly Hills</li>
+                                            <li>California</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h6>To</h6>
+                                        <ul className="list-unstyled">
+                                            <li>Fiona Bruce</li>
+                                            <li>1 Television Center</li>
+                                            <li>101 Wood Lane</li>
+                                            <li>London</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div className="col-6">
+
+                                </div>
+                            </div>
                             <table className="table">
                                 <thead>
                                 <tr>
