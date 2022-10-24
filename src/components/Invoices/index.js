@@ -4,7 +4,7 @@ import ViewInvoice from "./ViewInvoice";
 import { useEffect } from "react";
 
 const Invoices = () => {
-    // --- fetch invoices and returns json promise
+    // --- fetch invoices and returns json promise ---
     const extractResponseData = (response) => {
         return response.json();
     };
