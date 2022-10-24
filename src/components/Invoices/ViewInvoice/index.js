@@ -1,5 +1,5 @@
-import ClientDropDown from "./ClientDropDown";
-import InputTable from "./InputTable";
+import ClientDropDown from "../NewInvoice/ClientDropDown";
+import InputTable from "../NewInvoice/InputTable";
 
 const ViewInvoice = () => {
     return (
