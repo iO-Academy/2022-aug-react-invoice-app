@@ -5,6 +5,7 @@ import ViewInvoice from "./ViewInvoice";
 const Invoices = () => {
     return (
         <>
+            <div className="p-5">
             <header className="d-flex justify-content-between align-items-end flex-wrap pt-3 px-0">
                 <div>
                     <h1 className="fw-bolder">Invoices</h1>
@@ -61,6 +62,7 @@ const Invoices = () => {
                 <hr className="col-12 mt-4 me-5"/>
                 <div className="col-12">© Copyright iO Academy 2022</div>
             </footer>
+            </div>
             <InvoiceCards />
             <NewInvoice />
             <ViewInvoice />
