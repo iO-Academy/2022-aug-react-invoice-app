@@ -6,9 +6,10 @@ const NewInvoice = () => {
                     <div className="modal-header">
                         <h5 className="modal-title">Invoice #NZ36836</h5>
                         <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                aria-label="Close"></button>
+                                aria-label="Close">
+                        </button>
                     </div>
-                    <div className="modal-body px-3 overflow-auto">
+                    <div className="modal-body overflow-auto px-3">
                         <div className="container">
                             <div className="row d-flex justify-content-between">
                                 <div className="col-4">
@@ -34,7 +35,7 @@ const NewInvoice = () => {
                                 <div className="col-2"></div>
                                 <div className="col-4">
                                     <h6>Status</h6>
-                                    <ul className="ps-4 btn btn-outline-warning">
+                                    <ul className="btn btn-outline-warning ps-4">
                                         <li><strong>Pending</strong></li>
                                     </ul>
                                     <h6>Created</h6>
