@@ -73,16 +73,14 @@ const Invoices = () => {
                 </div>
             </header>
             <main>
-                <div className="card mb-2 p-3 justify-content-center"> Text</div>
-                <div className="card mb-2 p-3 justify-content-center"> Text</div>
-                <div className="card mb-2 p-3 justify-content-center"> Text</div>
+                <InvoiceCards />
             </main>
             <footer>
                 <hr className="col-12 mt-4"/>
                 <div className="col-12">© Copyright iO Academy 2022</div>
             </footer>
             </div>
-            <InvoiceCards />
+
             <NewInvoice />
             <ViewInvoice />
         </>
