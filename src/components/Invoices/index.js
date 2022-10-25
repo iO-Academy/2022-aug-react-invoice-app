@@ -5,16 +5,16 @@ import ViewInvoice from "./ViewInvoice";
 const Invoices = () => {
     return (
         <>
-            <div className="container-fluid px-5">
+            <div className="container px-2">
                 <div className="row">
                     <div className="col-12 pt-5">
                         <h1 className="display-1 fw-bolder ">Invoices</h1>
                         <div className=" mb-5 text-secondary fs-2">There are 7 unpaid invoices</div>
                 </div>
-                    <div className="row">
-                        <div className="col-3 mb-5">
+                <div className="row">
+                        <div className="col-4 mb-5">
                             <div className="dropdown">
-                                <button className="btn btn-light dropdown-toggle fs-2" type="button"
+                                <button className="btn btn-light dropdown-toggle fs-6" type="button"
                                         id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     Sort By
                                 </button>
@@ -26,9 +26,9 @@ const Invoices = () => {
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-3 mb-5">
+                        <div className="col-4 mb-5">
                             <div className="dropdown">
-                                <button className="btn btn-light dropdown-toggle fs-2" type="button"
+                                <button className="btn btn-light dropdown-toggle fs-6" type="button"
                                         id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                                     Filter By Status
                                 </button>
@@ -41,7 +41,9 @@ const Invoices = () => {
                                 </ul>
                             </div>
                         </div>
-                        <button className="col-3 mb-5 btn btn-info text-white fs-3">New Invoice</button>
+
+                    <div className="col-4 mb-5" >
+                        <button className="btn btn-info text-white fs-6">New Invoice</button>
                     </div>
                     </div>
                 </div>
@@ -62,6 +64,7 @@ const Invoices = () => {
                     <hr className="col-12 mt-4 " />
                         <div className="col-12"> Text</div>
                 </div>
+            </div>
             <InvoiceCards />
             <NewInvoice />
             <ViewInvoice />
