@@ -1,7 +1,7 @@
 const InvoiceCards = () => {
     return (
         <>
-            <div className="d-flex flex-wrap justify-content-between align-items-center p-3 bd-highlight border rounded">
+            <div className="bg-white d-flex flex-wrap justify-content-between align-items-center p-3 bd-highlight border rounded">
                     <div className="pe-4"><strong>#NZ3689</strong></div>
                     <div className="px-4 text-muted">Due 19 July 2022</div>
                     <div className="ps-4 text-muted">Jenna Cole</div>
