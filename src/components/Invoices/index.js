@@ -1,9 +1,13 @@
 import InvoiceCards from "./InvoiceCards";
 import NewInvoice from "./NewInvoice";
 import ViewInvoice from "./ViewInvoice";
-import { useEffect } from "react";
+import {useState, useEffect} from "react";
+
 
 const Invoices = () => {
+
+    const [invoices, setInvoices] = useState([]);
+
     // --- fetch invoices and returns json promise ---
     const extractResponseData = (response) => {
         return response.json();
@@ -22,13 +26,17 @@ const Invoices = () => {
     useEffect( () => {
         fetchInvoices()
             .then((invoiceData) => {
-                console.log(invoiceData);
+                setInvoices(invoiceData.data);
             })
             .catch((err) => {
                 err.message = 'Error! Could not resolve promise.';
                 console.log(err.message);
             });
     }, []);
+
+    console.log(invoices);
+
+
 
     return (
         <>
@@ -73,7 +81,12 @@ const Invoices = () => {
                 </div>
             </header>
             <main>
-                <InvoiceCards />
+                {invoices.map((invoice) => {
+                        return (
+                            <InvoiceCards invoice={invoice} />
+                            )
+                    })}
+
             </main>
             <footer>
                 <hr className="col-12 mt-4"/>
