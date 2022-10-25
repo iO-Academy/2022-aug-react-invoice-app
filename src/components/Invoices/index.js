@@ -5,15 +5,15 @@ import ViewInvoice from "./ViewInvoice";
 const Invoices = () => {
     return (
         <>
-            <div className="p-5">
+            <div className="py-5 px-3">
             <header className="d-flex justify-content-between align-items-end flex-wrap pt-3 px-0">
                 <div>
                     <h1 className="fw-bolder">Invoices</h1>
                     <p>There are 7 unpaid invoices</p>
                 </div>
-                <div className="d-flex justify-content-between">
+                <div className="d-flex justify-content-between py-3">
                     <div className="dropdown">
-                        <button className="btn btn-light dropdown-toggle fs-6 me-1" type="button"
+                        <button className="btn btn-light dropdown-toggle fs-6 fw-bold text-dark me-1" type="button"
                                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             Sort By
                         </button>
@@ -25,7 +25,7 @@ const Invoices = () => {
                         </ul>
                     </div>
                     <div className="dropdown">
-                        <button className="btn btn-light dropdown-toggle fs-6 me-4" type="button"
+                        <button className="btn btn-light dropdown-toggle fs-6 fw-bold text-dark me-4" type="button"
                                 id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                             Filter By Status
                         </button>
@@ -38,28 +38,20 @@ const Invoices = () => {
                         </ul>
                     </div>
                     <p>
-                        <button type="button" className="btn btn-info">
+                        <button type="button" className="btn btn-info text-nowrap">
                             <div className="bg-white d-inline block"><i className="bi bi-plus-square-fill"></i></div>
-                            <span className="text-white"> New Invoice</span>
+                            <span className="text-white fs-5"> New Invoice</span>
                         </button>
                     </p>
                 </div>
             </header>
             <main>
-                <div className="row">
-                    <div className="col-12 card mb-2 p-3 justify-content-center"> Text</div>
-                </div>
-
-                <div className="row">
-                    <div className="col-12 card mb-2 p-3"> Text</div>
-                </div>
-
-                <div className="row">
-                    <div className="col-12 card mb-2 p-3"> Text</div>
-                </div>
+                <div className="card mb-2 p-3 justify-content-center"> Text</div>
+                <div className="card mb-2 p-3 justify-content-center"> Text</div>
+                <div className="card mb-2 p-3 justify-content-center"> Text</div>
             </main>
             <footer>
-                <hr className="col-12 mt-4 me-5"/>
+                <hr className="col-12 mt-4"/>
                 <div className="col-12">© Copyright iO Academy 2022</div>
             </footer>
             </div>
