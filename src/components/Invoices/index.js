@@ -1,13 +1,17 @@
 import InvoiceCards from "./InvoiceCards";
 import NewInvoice from "./NewInvoice";
 import ViewInvoice from "./ViewInvoice";
-import { useEffect } from "react";
+import {useState, useEffect} from "react";
+
 
 const Invoices = () => {
+
+    const [invoices, setInvoices] = useState([]);
+
     // --- fetch invoices and returns json promise ---
     const extractResponseData = (response) => {
         return response.json();
-    };
+    }
 
     const fetchInvoices = async () => {
         const response = await fetch('http://localhost:8080/invoices');
@@ -15,18 +19,17 @@ const Invoices = () => {
             throw new Error();
         }
         return await extractResponseData(response);
-    };
+    }
 
     // --- on mount logs the data retrieved ---
     // --- Replace console.log(invoiceData) with setState inside the .then() to display data ---
     useEffect( () => {
         fetchInvoices()
             .then((invoiceData) => {
-                console.log(invoiceData);
+                setInvoices(invoiceData.data);
             })
             .catch((err) => {
                 err.message = 'Error! Could not resolve promise.';
-                console.log(err.message);
             });
     }, []);
 
@@ -73,16 +76,20 @@ const Invoices = () => {
                 </div>
             </header>
             <main>
-                <div className="card mb-2 p-3 justify-content-center"> Text</div>
-                <div className="card mb-2 p-3 justify-content-center"> Text</div>
-                <div className="card mb-2 p-3 justify-content-center"> Text</div>
+                {invoices.map((invoice) => {
+                        return (
+                            <InvoiceCards invoice={invoice} />
+                            );
+                    })
+                }
+
             </main>
             <footer>
                 <hr className="col-12 mt-4"/>
                 <div className="col-12">© Copyright iO Academy 2022</div>
             </footer>
             </div>
-            <InvoiceCards />
+
             <NewInvoice />
             <ViewInvoice />
         </>
