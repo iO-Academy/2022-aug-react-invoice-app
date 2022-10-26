@@ -1,3 +1,4 @@
+import {changeStatusColour, currencyFormatter, dateFormatter} from '../../helpers/utils';
 
 const ViewInvoice = (props) => {
 
@@ -12,8 +13,7 @@ const ViewInvoice = (props) => {
         invoice_total,
         paid_to_date,
         status,
-        status_name,
-        details} = props.detailedInvoiceState;
+        status_name} = props.detailedInvoiceState;
 
     const totalDue = invoice_total - paid_to_date;
 
@@ -22,16 +22,17 @@ const ViewInvoice = (props) => {
             <tr key={index}>
             <td>{detail.description}</td>
             <td>{detail.quantity}</td>
-            <td>{detail.rate}</td>
-            <td>{detail.total}</td>
+            <td>{detail.rate}.00</td>
+            <td>{currencyFormatter(detail.total)}</td>
             </tr>
         )
     })
 
     return (
         <>
-            <button onClick={handleCardClick}>click</button>
-            <div id="viewInvoiceModal" className=" container" tabIndex="-1">
+            <button onClick={handleCardClick} type="button" className="btn btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#viewInvoiceModal">click</button>
+            <div id="viewInvoiceModal" className="modal container" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -65,13 +66,11 @@ const ViewInvoice = (props) => {
                                     <div className="col-2"></div>
                                     <div className="col-4">
                                         <h6>Status</h6>
-                                        <ul className="btn btn-outline-warning ps-4">
-                                            <li><strong>{status_name}</strong></li>
-                                        </ul>
+                                        {changeStatusColour(status, status_name)}
                                         <h6>Created</h6>
-                                        <p>{created}</p>
+                                        <p>{created && dateFormatter(created)}</p>
                                         <h6>Due</h6>
-                                        <p>{due}</p>
+                                        <p>{due && dateFormatter(due)}</p>
                                     </div>
                                 </div>
                             </div>
@@ -90,19 +89,19 @@ const ViewInvoice = (props) => {
                                     <td></td>
                                     <td className="text-end">Total</td>
                                     <td></td>
-                                    <th>£{invoice_total}</th>
+                                    <th>{currencyFormatter(invoice_total)}</th>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td className="text-end text-nowrap">Paid to date</td>
                                     <td></td>
-                                    <th>£{paid_to_date}</th>
+                                    <th>{currencyFormatter(paid_to_date)}</th>
                                 </tr>
                                 <tr className="bg-warning">
                                     <td></td>
                                     <td className="text-end">Total due</td>
                                     <td></td>
-                                    <th>£{totalDue}</th>
+                                    <th>{currencyFormatter(totalDue)}</th>
                                 </tr>
                                 </tbody>
                             </table>
