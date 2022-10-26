@@ -104,7 +104,6 @@ const ViewInvoice = () => {
                     </div>
                 </div>
             </div>
-            );
         </>
     );
 }
