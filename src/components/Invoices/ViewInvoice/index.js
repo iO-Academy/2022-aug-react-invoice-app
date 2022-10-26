@@ -1,9 +1,6 @@
 const ViewInvoice = () => {
     return (
         <>
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viewInvoiceModal">
-                Launch demo modal
-            </button>
             <div id="viewInvoiceModal" className="modal container" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
                     <div className="modal-content">
