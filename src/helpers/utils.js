@@ -17,7 +17,8 @@ export const currencyFormatter = (invoice_total) => {
         currency: 'GBP',
     };
     const invoicesTotalFloat = parseFloat(invoice_total);
-    return invoicesTotalFloat.toLocaleString("en-GB", options);
+    const localeString =  invoicesTotalFloat.toLocaleString("en-GB", options);
+    return localeString.slice(0,1) + " " + localeString.slice(1);
 }
 
 export const dateFormatter = (dateString) => {
