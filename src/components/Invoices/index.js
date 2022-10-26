@@ -31,13 +31,17 @@ const Invoices = () => {
             });
     }, []);
 
+    // --- filtered unpaid invoices ---
+    const filteredInvoices = invoices.filter(invoice => invoice.status === "2");
+    const unpaidInvoices = filteredInvoices.length;
+
     return (
         <>
             <div className="py-5 px-3">
             <header className="d-flex justify-content-between align-items-end flex-wrap pt-3 px-0">
                 <div>
                     <h1 className="fw-bolder">Invoices</h1>
-                    <p>There are 7 unpaid invoices</p>
+                    <p>There are {unpaidInvoices} unpaid invoices</p>
                 </div>
                 <div className="d-flex justify-content-between py-3">
                     <div className="dropdown">
