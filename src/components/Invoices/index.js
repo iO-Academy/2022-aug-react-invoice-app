@@ -21,8 +21,6 @@ const Invoices = () => {
         return await extractResponseData(response);
     }
 
-    // --- on mount logs the data retrieved ---
-    // --- Replace console.log(invoiceData) with setState inside the .then() to display data ---
     useEffect( () => {
         fetchInvoices()
             .then((invoiceData) => {
