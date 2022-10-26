@@ -5,12 +5,12 @@
 Project 4 relating to module 5 of iO Full-Stack Web Development.
 
 ### Objective
-Group project with the objective of build an Invoice Management Application to test knowledge acquired 
+Group project with the objective of building an Invoice Management Application to test knowledge acquired 
 during module 5 of iO Academy Full-Stack curriculum:
 + Agile work environment best practices in a SCRUM methodology
 + Git / Github workflow and best practices as a developer team
 + Component Driven Development using the React.js Library
-+ CSS frameworks  using Bootstrap 5.2.2
++ CSS frameworks using Bootstrap 5.2.2
 
 ### Technologies
 + React.js - https://reactjs.org/
@@ -21,7 +21,7 @@ during module 5 of iO Academy Full-Stack curriculum:
 Follow the next steps to install locally:
 + ### Install Git
   Using the following the instructions for the corresponding OS - https://github.com/git-guides/install-git
-+ ### Installing the Data Base
++ ### Installing the Database
   Head over to https://github.com/iO-Academy/invoicing-API and follow the instructions in the 
   README file in the "Run the API locally" section.
   

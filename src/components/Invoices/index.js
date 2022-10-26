@@ -32,6 +32,10 @@ const Invoices = () => {
             });
     }, []);
 
+    // --- filtered unpaid invoices ---
+    const filteredInvoices = invoices.filter(invoice => invoice.status === "2");
+    const unpaidInvoices = filteredInvoices.length;
+
     return (
         <>
             <ViewInvoice />
