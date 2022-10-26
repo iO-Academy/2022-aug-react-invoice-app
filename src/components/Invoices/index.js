@@ -11,7 +11,7 @@ const Invoices = () => {
     // --- fetch invoices and returns json promise ---
     const extractResponseData = (response) => {
         return response.json();
-    };
+    }
 
     const fetchInvoices = async () => {
         const response = await fetch('http://localhost:8080/invoices');
@@ -19,7 +19,7 @@ const Invoices = () => {
             throw new Error();
         }
         return await extractResponseData(response);
-    };
+    }
 
     // --- on mount logs the data retrieved ---
     // --- Replace console.log(invoiceData) with setState inside the .then() to display data ---
@@ -30,13 +30,8 @@ const Invoices = () => {
             })
             .catch((err) => {
                 err.message = 'Error! Could not resolve promise.';
-                console.log(err.message);
             });
     }, []);
-
-    console.log(invoices);
-
-
 
     return (
         <>
@@ -84,8 +79,9 @@ const Invoices = () => {
                 {invoices.map((invoice) => {
                         return (
                             <InvoiceCards invoice={invoice} />
-                            )
-                    })}
+                            );
+                    })
+                }
 
             </main>
             <footer>
