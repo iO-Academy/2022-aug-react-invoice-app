@@ -1,13 +1,13 @@
 import InvoiceCards from "./InvoiceCards";
 import NewInvoice from "./NewInvoice";
 import ViewInvoice from "./ViewInvoice";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 
 const Invoices = () => {
 
     const detailedInvoice = {
         data: {
-        id: "",
+            id: "",
             invoice_id: "",
             name: "",
             street_address: "",
@@ -24,34 +24,34 @@ const Invoices = () => {
                     quantity: "",
                     rate: "",
                     total: ""
-                }
+                },
             ]
         }
     }
 
+    const initialDetailsState = [];
+
+    const [detailedInvoiceState, setDetailedInvoiceState] = useState(detailedInvoice);
+    const [detailsState, setDetailsState] = useState(initialDetailsState);
+
     const fetchDetailedInvoice = async (invoiceId) => {
-        const response = await fetch('http://localhost:8080/invoices/150');
+        const response = await fetch(`http://localhost:8080/invoices/${invoiceId}`);
 
         return await response.json();
     }
 
-    const handleInvoiceCardClick = (event) => {
-        fetchDetailedInvoice(event.target.)
+    const handleCardClick = () => {
+        fetchDetailedInvoice(150)
             .then((detailedInvoiceData) => {
-                console.log(detailedInvoiceData);
+                setDetailedInvoiceState(detailedInvoiceData.data);
+                setDetailsState(detailedInvoiceData.data.details);
             })
     }
-    useEffect(() => {
-        fetchDetailedInvoice()
-            .then((detailedInvoiceData) => {
-                console.log(detailedInvoiceData);
-            })
-
-    }, [])
 
     return (
         <>
-            <ViewInvoice />
+            <ViewInvoice handleCardClick={handleCardClick} detailedInvoiceState={detailedInvoiceState}
+                         detailsState={detailsState}/>
             <InvoiceCards />
             <NewInvoice />
         </>
