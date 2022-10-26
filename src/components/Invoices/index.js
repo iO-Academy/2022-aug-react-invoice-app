@@ -71,7 +71,7 @@ const Invoices = () => {
                     </div>
                     <p>
                         <button type="button" className="btn btn-info text-nowrap">
-                            <div className="bg-white d-inline block"><i className="bi bi-plus-square-fill"></i></div>
+                            <div className="badge text-bg-dark p-1"><i className="fa-solid fa-plus fa-lg"></i></div>
                             <span className="text-white fs-5"> New Invoice</span>
                         </button>
                     </p>
