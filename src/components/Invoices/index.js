@@ -37,7 +37,6 @@ const Invoices = () => {
     return (
         <>
             <ViewInvoice />
-            <InvoiceCards />
 
             <div className="py-5 px-3">
             <header className="d-flex justify-content-between align-items-end flex-wrap pt-3 px-0">
