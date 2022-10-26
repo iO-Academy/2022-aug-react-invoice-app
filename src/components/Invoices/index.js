@@ -89,9 +89,8 @@ const Invoices = () => {
                 <div className="col-12">© Copyright iO Academy 2022</div>
             </footer>
             </div>
-
-            <NewInvoice />
             <ViewInvoice />
+            <NewInvoice />
         </>
     );
 }

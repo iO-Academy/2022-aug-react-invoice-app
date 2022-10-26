@@ -1,4 +1,6 @@
 // you will need to import dateFormatter via utils.js
+import ClientDropDown from "./ClientDropDown";
+import InputTable from "./InputTable";
 
 const NewInvoice = () => {
 
@@ -25,8 +27,10 @@ const NewInvoice = () => {
         <>
             <div>Created: {dateFormatter(todayDate)}</div>
             <div>Due: {dateFormatter(dueDate)}</div>
+            <ClientDropDown />
+            <InputTable />
         </>
-    );
+    )
 }
 
 export default NewInvoice;
