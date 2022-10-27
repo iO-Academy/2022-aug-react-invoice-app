@@ -1,6 +1,3 @@
-import {useEffect, useState} from "react";
-import ClientDropDown from "../index";
-
 const ClientNameForDropdown = (props) => {
     const {clientInfo, handleNameChange} = props;
     return (
@@ -16,4 +13,4 @@ const ClientNameForDropdown = (props) => {
     );
 }
 
-export default ClientDropDown;
+export default ClientNameForDropdown;
