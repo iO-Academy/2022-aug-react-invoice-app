@@ -55,3 +55,13 @@ export const dateFormatter = (dateString) => {
     };
     return (new Intl.DateTimeFormat('en-GB', options).format(date));
 }
+
+export const validateInput = (inputValue) => {
+    const trimmedInput = inputValue.trim();
+    return trimmedInput
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}

@@ -27,7 +27,6 @@ const ViewInvoice = (props) => {
     })
 
     return (
-        <>
             <div id="viewInvoiceModal" className="modal container end-0" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
                     <div className="modal-content">
@@ -101,12 +100,12 @@ const ViewInvoice = (props) => {
                         <div className="modal-footer">
                             <button type="button" className="btn btn-success" data-bs-dismiss="modal">Mark as paid
                             </button>
-                            <button type="button" className="btn btn-danger">Cancel changes</button>
+                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cancel invoices
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-        </>
     );
 }
 
