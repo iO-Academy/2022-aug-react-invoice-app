@@ -1,7 +1,7 @@
 import {changeStatusColour, currencyFormatter, currencyFormatterNoSpace, dateFormatter, changeStatusBarColour} from '../../../helpers/utils';
 
 const ViewInvoice = (props) => {
-
+console.log(props);
     const handleCardClick = props.handleCardClick;
 
     const {invoice_id,
@@ -20,10 +20,10 @@ const ViewInvoice = (props) => {
     const generateRows = props.detailsState.map((detail, index) => {
         return (
             <tr key={index}>
-            <td>{detail.description}</td>
-            <td>{detail.quantity}</td>
-            <td>{detail.rate}.00</td>
-            <td>{currencyFormatterNoSpace(detail.total)}</td>
+                <td>{detail.description}</td>
+                <td>{detail.quantity}</td>
+                <td>{detail.rate}.00</td>
+                <td>{currencyFormatterNoSpace(detail.total)}</td>
             </tr>
         )
     })

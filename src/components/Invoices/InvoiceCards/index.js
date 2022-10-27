@@ -7,7 +7,6 @@ const InvoiceCards = (props) => {
         <>
         <div onClick={(event) => {
             event.preventDefault();
-            console.log(event.target);
             props.handleCardClick(event.target.getAttribute('data-id'));
         }}
              data-bs-toggle="modal" data-bs-target="#viewInvoiceModal"
