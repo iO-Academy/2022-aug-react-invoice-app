@@ -1,7 +1,7 @@
-import {changeStatusColour, currencyFormatter, currencyFormatterNoSpace, dateFormatter, changeStatusBarColour} from '../../../helpers/utils';
+import {changeStatusColour, currencyFormatterNoSpace, dateFormatter, changeStatusBarColour} from '../../../helpers/utils';
 
 const ViewInvoice = (props) => {
-console.log(props);
+
     const handleCardClick = props.handleCardClick;
 
     const {invoice_id,
@@ -96,12 +96,6 @@ console.log(props);
                                     <th>{currencyFormatterNoSpace(paid_to_date)}</th>
                                 </tr>
                                     {changeStatusBarColour(status, totalDue)}
-                                {/*<tr>*/}
-                                {/*    <td></td>*/}
-                                {/*    <td className="text-end">Total due</td>*/}
-                                {/*    <td></td>*/}
-                                {/*    <th>{currencyFormatterNoSpace(totalDue)}</th>*/}
-                                {/*</tr>*/}
                                 </tbody>
                             </table>
                             <p>Payments due within 30 days.</p>
