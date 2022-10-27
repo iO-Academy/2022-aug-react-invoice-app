@@ -2,7 +2,7 @@
 import ClientDropDown from "./ClientDropDown";
 import InputTable from "./InputTable";
 
-const NewInvoice = () => {
+const NewInvoice = ({handleSubmit}) => {
 
     const todayDate = Date.now();
     todayDate.toString();
@@ -22,7 +22,7 @@ const NewInvoice = () => {
 
     return (
         <>
-            <div id="newInvoiceModal" className="modal container" tabIndex="-1">
+            <div id="newInvoiceModal" className="modal container end-0" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -52,7 +52,7 @@ const NewInvoice = () => {
                                     <div className="col-2"></div>
                                     <div className="col-4">
                                         <h6>Status</h6>
-                                        <ul className="btn btn-outline-warning ps-4">
+                                        <ul className="btn btn-outline-warning ps-4 disabled opacity-100">
                                             <li><strong>Pending</strong></li>
                                         </ul>
                                         <h6>Created</h6>
@@ -89,9 +89,11 @@ const NewInvoice = () => {
                             </table>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-success" data-bs-dismiss="modal">Create invoice
+                            <button type="button" className="btn btn-success" data-bs-dismiss="modal"
+                            onClick={handleSubmit}>
+                                Create invoice
                             </button>
-                            <button type="button" className="btn btn-danger">Cancel invoice</button>
+                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cancel invoice</button>
                         </div>
                     </div>
                 </div>
