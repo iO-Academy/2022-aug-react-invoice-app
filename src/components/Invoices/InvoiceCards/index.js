@@ -2,12 +2,12 @@ import {changeStatusColour, dateFormatter, currencyFormatter} from "../../../hel
 
 const InvoiceCards = (props) => {
     const { due, id, invoice_id, name, invoice_total, status, status_name } = props.invoice;
+    const handleCardClick = props.handleCardClick;
 
     return (
         <>
         <div onClick={(event) => {
-            event.preventDefault();
-            props.handleCardClick(event.target.getAttribute('data-id'));
+            handleCardClick(event.target.getAttribute('data-id'));
         }}
              data-bs-toggle="modal" data-bs-target="#viewInvoiceModal"
              className="bg-white d-flex flex-wrap mb-2 justify-content-between align-items-center p-3 bd-highlight border rounded"

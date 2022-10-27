@@ -2,8 +2,6 @@ import {changeStatusColour, currencyFormatterNoSpace, dateFormatter, changeStatu
 
 const ViewInvoice = (props) => {
 
-    const handleCardClick = props.handleCardClick;
-
     const {invoice_id,
         name,
         street_address,
