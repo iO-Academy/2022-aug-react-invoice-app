@@ -46,9 +46,7 @@ const NewInvoice = () => {
                                         </div>
                                         <div>
                                             <h6>To</h6>
-
                                             <ClientDropDown />
-
                                         </div>
                                     </div>
                                     <div className="col-2"></div>
@@ -64,7 +62,6 @@ const NewInvoice = () => {
                                     </div>
                                 </div>
                             </div>
-
                             <table className="table">
                                 <thead className="border-top border-bottom">
                                     <tr>
@@ -75,14 +72,12 @@ const NewInvoice = () => {
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     <tr className="vh-10">
                                         <td>
                                             <InputTable />
                                         </td>
                                     </tr>
-
                                     <tr className="bg-warning">
                                         <td></td>
                                         <td></td>
@@ -91,7 +86,6 @@ const NewInvoice = () => {
                                         <th className="text-end">£500.00</th>
                                     </tr>
                                 </tbody>
-
                             </table>
                         </div>
                         <div className="modal-footer">
