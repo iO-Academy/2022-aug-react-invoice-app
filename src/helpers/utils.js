@@ -56,7 +56,7 @@ export const dateFormatter = (dateString) => {
     return (new Intl.DateTimeFormat('en-GB', options).format(date));
 }
 
-export const validateInput = (inputValue) => {
+export const sanitiseInput = (inputValue) => {
     const trimmedInput = inputValue.trim();
     return trimmedInput
         .replace(/&/g, "&amp;")
