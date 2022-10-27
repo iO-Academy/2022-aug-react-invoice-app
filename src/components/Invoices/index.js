@@ -30,16 +30,69 @@ const Invoices = () => {
             .catch((err) => {
                 err.message = 'Error! Could not resolve promise.';
             });
-    }, []);
+    });
 
     // --- filtered unpaid invoices ---
     const filteredInvoices = invoices.filter(invoice => invoice.status === "2");
     const unpaidInvoices = filteredInvoices.length;
 
+    // hardcoded data to submit on POST
+    const newInvoice = {
+        "client": 2,
+        "total": 1234,
+        "details": [
+            {
+                "quantity": 2,
+                "rate": 617,
+                "total": 1234,
+                "description": "Optional text field"
+            }
+        ]
+    };
+
+    // --- Send POST request to invoices database and returns json promise ---
+    const postNewInvoice = async (data) => {
+        const response = await fetch('http://localhost:8080/invoices',{
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        })
+        if (!response.ok) {
+            throw new Error();
+        }
+        return await extractResponseData(response);
+    }
+
+    // --- handles newInvoice submission ---
+    const handleSubmit = () => {
+        postNewInvoice(newInvoice)
+            .then((res) => {
+                // --- hardcoded data to update invoices State ---
+                const newInvoiceDetails = {
+                    id: res.data.id,
+                    invoice_id: res.data.invoice_id,
+                    name: "Holly-anne Crothers",
+                    due: "2021-12-30",
+                    invoice_total: "4485.93",
+                    status: "1",
+                    status_name: "Paid"
+                }
+                setInvoices((prevInvoiceState) => {
+                    return [...prevInvoiceState, newInvoiceDetails];
+                })
+            })
+            .catch((err) => {
+                err.message = 'Error! Could not post this new invoice.';
+            });
+    }
+
+
     return (
         <>
             <ViewInvoice />
-            <NewInvoice />
+            <NewInvoice handleSubmit={handleSubmit}/>
             <div className="py-5 px-3">
                 <header className="d-flex justify-content-between align-items-end flex-wrap pt-3 px-0">
                     <div>
