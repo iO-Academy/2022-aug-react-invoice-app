@@ -2,7 +2,7 @@
 import ClientDropDown from "./ClientDropDown";
 import InputTable from "./InputTable";
 
-const NewInvoice = () => {
+const NewInvoice = ({handleSubmit}) => {
 
     const todayDate = Date.now();
     todayDate.toString();
@@ -20,52 +20,9 @@ const NewInvoice = () => {
     const dueDate = new Date();
     dueDate.setDate(dueDate. getDate() + 30);
 
-    // --- Send POST request to invoices database and returns json promise ---
-    const newInvoice = {
-        "client": 2,
-        "total": 1234,
-        "details": [
-            {
-                "quantity": 2,
-                "rate": 617,
-                "total": 1234,
-                "description": "Optional text field"
-            }
-        ]
-    };
-
-    const extractResponseData = (response) => {
-        return response.json();
-    }
-
-    const postNewInvoice = async (data) => {
-        const response = await fetch('http://localhost:8080/invoices',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        })
-        if (!response.ok) {
-            throw new Error();
-        }
-        return await extractResponseData(response);
-    }
-
-    const handleSubmit = () => {
-        postNewInvoice(newInvoice)
-            .then(res => {
-                console.log(res.message);
-                console.log(newInvoice);
-            })
-            .catch((err) => {
-                err.message = 'Error! Could not post this new invoice.';
-            });
-    }
-
     return (
         <>
-            <div id="newInvoiceModal" className="modal container" tabIndex="-1">
+            <div id="newInvoiceModal" className="modal container end-0" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -139,7 +96,7 @@ const NewInvoice = () => {
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-success" data-bs-dismiss="modal"
-                            onClick={handleSubmit}>
+                            onClick={handleSubmit} >
                                 Create invoice
                             </button>
                             <button type="button" className="btn btn-danger">Cancel invoice</button>
