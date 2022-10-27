@@ -93,31 +93,6 @@ const Invoices = () => {
                                       listItemsArray={['Invoice Reference', 'Invoice Total', 'Date Created', 'Date Due']}/>
                     <DropdownElements dropdownName={'Filter By Status'}
                                       listItemsArray={['Paid', 'Pending', 'Cancelled', 'Overdue', 'View All']}/>
-                    {/*<div className="dropdown">*/}
-                    {/*    <button className="btn btn-light dropdown-toggle fs-6 fw-bold text-dark me-1" type="button"*/}
-                    {/*            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">*/}
-                    {/*        Sort By*/}
-                    {/*    </button>*/}
-                    {/*    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">*/}
-                    {/*        <li><a className="dropdown-item fs-6" href="#">Invoice Reference</a></li>*/}
-                    {/*        <li><a className="dropdown-item fs-6" href="#">Invoice Total</a></li>*/}
-                    {/*        <li><a className="dropdown-item fs-6" href="#">Date Created</a></li>*/}
-                    {/*        <li><a className="dropdown-item fs-6" href="#">Date Due</a></li>*/}
-                    {/*    </ul>*/}
-                    {/*</div>*/}
-                    {/*<div className="dropdown">*/}
-                    {/*    <button className="btn btn-light dropdown-toggle fs-6 fw-bold text-dark me-4" type="button"*/}
-                    {/*            id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">*/}
-                    {/*        Filter By Status*/}
-                    {/*    </button>*/}
-                    {/*    <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">*/}
-                    {/*        <li><a className="dropdown-item fs-6" href="#">Paid</a></li>*/}
-                    {/*        <li><a className="dropdown-item fs-6" href="#">Pending</a></li>*/}
-                    {/*        <li><a className="dropdown-item fs-6" href="#">Cancelled</a></li>*/}
-                    {/*        <li><a className="dropdown-item fs-6" href="#">Overdue</a></li>*/}
-                    {/*        <li><a className="dropdown-item fs-6" href="#">View All</a></li>*/}
-                    {/*    </ul>*/}
-                    {/*</div>*/}
                     <p>
                         <button type="button" className="btn btn-info text-nowrap">
                             <div className="badge text-bg-dark p-1"><i className="fa-solid fa-plus fa-lg"></i></div>
