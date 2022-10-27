@@ -7,7 +7,7 @@ const NewInvoice = () => {
             <ClientDropDown />
             <InputTable />
         </>
-    )
+    );
 }
 
 export default NewInvoice;

@@ -11,6 +11,22 @@ export const changeStatusColour = (status, status_name) => {
     )
 }
 
+export const changeStatusBarColour = (status, totalDue) => {
+    const statusMap = {
+        "1": "bg-success text-white",
+        "2": "bg-warning",
+        "3": "bg-danger text-white"
+    };
+    return (
+        <tr className={statusMap[status]}>
+            <td></td>
+            <td className="text-end">Total due</td>
+            <td></td>
+            <th>{currencyFormatterNoSpace(totalDue)}</th>
+        </tr>
+    )
+}
+
 export const currencyFormatter = (invoice_total) => {
     const options = {
         style: 'currency',
@@ -19,6 +35,15 @@ export const currencyFormatter = (invoice_total) => {
     const invoicesTotalFloat = parseFloat(invoice_total);
     const localeString =  invoicesTotalFloat.toLocaleString("en-GB", options);
     return localeString.slice(0,1) + " " + localeString.slice(1);
+}
+
+export const currencyFormatterNoSpace = (invoice_total) => {
+    const options = {
+        style: 'currency',
+        currency: 'GBP',
+    };
+    const invoicesTotalFloat = parseFloat(invoice_total);
+    return invoicesTotalFloat.toLocaleString("en-GB", options);
 }
 
 export const dateFormatter = (dateString) => {
