@@ -2,6 +2,7 @@ import InvoiceCards from "./InvoiceCards";
 import NewInvoice from "./NewInvoice";
 import ViewInvoice from "./ViewInvoice";
 import {useEffect, useState} from "react";
+import DropdownElements from "./DropDownElements";
 
 const Invoices = () => {
 
@@ -81,38 +82,17 @@ const Invoices = () => {
         <>
             <ViewInvoice detailedInvoiceState={detailedInvoiceState} detailsState={detailsState}/>
 
-            <div className="py-5 px-3">
+            <div className="py-5 px-5">
             <header className="d-flex justify-content-between align-items-end flex-wrap pt-3 px-0">
                 <div>
                     <h1 className="fw-bolder">Invoices</h1>
                     <p>There are {unpaidInvoices} unpaid invoices</p>
                 </div>
                 <div className="d-flex justify-content-between py-3">
-                    <div className="dropdown">
-                        <button className="btn btn-light dropdown-toggle fs-6 fw-bold text-dark me-1" type="button"
-                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Sort By
-                        </button>
-                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a className="dropdown-item fs-6" href="#">Invoice Reference</a></li>
-                            <li><a className="dropdown-item fs-6" href="#">Invoice Total</a></li>
-                            <li><a className="dropdown-item fs-6" href="#">Date Created</a></li>
-                            <li><a className="dropdown-item fs-6" href="#">Date Due</a></li>
-                        </ul>
-                    </div>
-                    <div className="dropdown">
-                        <button className="btn btn-light dropdown-toggle fs-6 fw-bold text-dark me-4" type="button"
-                                id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                            Filter By Status
-                        </button>
-                        <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                            <li><a className="dropdown-item fs-6" href="#">Paid</a></li>
-                            <li><a className="dropdown-item fs-6" href="#">Pending</a></li>
-                            <li><a className="dropdown-item fs-6" href="#">Cancelled</a></li>
-                            <li><a className="dropdown-item fs-6" href="#">Overdue</a></li>
-                            <li><a className="dropdown-item fs-6" href="#">View All</a></li>
-                        </ul>
-                    </div>
+                    <DropdownElements dropdownName={'Sort By'}
+                                      listItemsArray={['Invoice Reference', 'Invoice Total', 'Date Created', 'Date Due']}/>
+                    <DropdownElements dropdownName={'Filter By Status'}
+                                      listItemsArray={['Paid', 'Pending', 'Cancelled', 'Overdue', 'View All']}/>
                     <p>
                         <button type="button" className="btn btn-info text-nowrap">
                             <div className="badge text-bg-dark p-1"><i className="fa-solid fa-plus fa-lg"></i></div>
@@ -124,7 +104,7 @@ const Invoices = () => {
             <main>
                 {invoices.map((invoice) => {
                         return (
-                            <InvoiceCards handleCardClick={handleCardClick} invoice={invoice} />
+                            <InvoiceCards handleCardClick={handleCardClick} invoice={invoice} key={invoice.id}/>
                             );
                     })
                 }
