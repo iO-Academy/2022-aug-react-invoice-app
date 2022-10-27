@@ -1,4 +1,4 @@
-import {changeStatusColour, currencyFormatter, dateFormatter} from '../../helpers/utils';
+import {changeStatusColour, currencyFormatter, currencyFormatterNoSpace, dateFormatter, changeStatusBarColour} from '../../../helpers/utils';
 
 const ViewInvoice = (props) => {
 
@@ -23,18 +23,14 @@ const ViewInvoice = (props) => {
             <td>{detail.description}</td>
             <td>{detail.quantity}</td>
             <td>{detail.rate}.00</td>
-            <td>{currencyFormatter(detail.total)}</td>
+            <td>{currencyFormatterNoSpace(detail.total)}</td>
             </tr>
         )
     })
 
     return (
         <>
-            <button onClick={handleCardClick} type="button" className="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#viewInvoiceModal">click
-            </button>
-
-            <div id="viewInvoiceModal" className="modal container" tabIndex="-1">
+            <div id="viewInvoiceModal" className="modal container end-0" tabIndex="-1">
                 <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -69,7 +65,7 @@ const ViewInvoice = (props) => {
                                     <div className="col-4">
                                         <h6>Status</h6>
                                         {changeStatusColour(status, status_name)}
-                                        <h6>Created</h6>
+                                        <h6 className="pt-3">Created</h6>
                                         <p>{created && dateFormatter(created)}</p>
                                         <h6>Due</h6>
                                         <p>{due && dateFormatter(due)}</p>
@@ -91,20 +87,21 @@ const ViewInvoice = (props) => {
                                     <td></td>
                                     <td className="text-end">Total</td>
                                     <td></td>
-                                    <th>{currencyFormatter(invoice_total)}</th>
+                                    <th>{currencyFormatterNoSpace(invoice_total)}</th>
                                 </tr>
                                 <tr>
                                     <td></td>
                                     <td className="text-end text-nowrap">Paid to date</td>
                                     <td></td>
-                                    <th>{currencyFormatter(paid_to_date)}</th>
+                                    <th>{currencyFormatterNoSpace(paid_to_date)}</th>
                                 </tr>
-                                <tr className="bg-warning">
-                                    <td></td>
-                                    <td className="text-end">Total due</td>
-                                    <td></td>
-                                    <th>{currencyFormatter(totalDue)}</th>
-                                </tr>
+                                    {changeStatusBarColour(status, totalDue)}
+                                {/*<tr>*/}
+                                {/*    <td></td>*/}
+                                {/*    <td className="text-end">Total due</td>*/}
+                                {/*    <td></td>*/}
+                                {/*    <th>{currencyFormatterNoSpace(totalDue)}</th>*/}
+                                {/*</tr>*/}
                                 </tbody>
                             </table>
                             <p>Payments due within 30 days.</p>

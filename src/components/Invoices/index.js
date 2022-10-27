@@ -40,8 +40,8 @@ const Invoices = () => {
         return await response.json();
     }
 
-    const handleCardClick = () => {
-        fetchDetailedInvoice(150)
+    const handleCardClick = (id) => {
+        fetchDetailedInvoice(id)
             .then((detailedInvoiceData) => {
                 setDetailedInvoiceState(detailedInvoiceData.data);
                 setDetailsState(detailedInvoiceData.data.details);
@@ -125,7 +125,7 @@ const Invoices = () => {
             <main>
                 {invoices.map((invoice) => {
                         return (
-                            <InvoiceCards invoice={invoice} />
+                            <InvoiceCards handleCardClick={handleCardClick} invoice={invoice} />
                             );
                     })
                 }
