@@ -1,6 +1,3 @@
-import ClientDropDown from "../NewInvoice/ClientDropDown";
-import InputTable from "../NewInvoice/InputTable";
-
 const ViewInvoice = () => {
     return (
         <>
@@ -107,7 +104,6 @@ const ViewInvoice = () => {
                     </div>
                 </div>
             </div>
-            );
         </>
     );
 }
