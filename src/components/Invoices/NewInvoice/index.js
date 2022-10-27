@@ -46,15 +46,13 @@ const NewInvoice = ({handleSubmit}) => {
                                         </div>
                                         <div>
                                             <h6>To</h6>
-
                                             <ClientDropDown />
-
                                         </div>
                                     </div>
                                     <div className="col-2"></div>
                                     <div className="col-4">
                                         <h6>Status</h6>
-                                        <ul className="btn btn-outline-warning ps-4">
+                                        <ul className="btn btn-outline-warning ps-4 disabled opacity-100">
                                             <li><strong>Pending</strong></li>
                                         </ul>
                                         <h6>Created</h6>
@@ -64,7 +62,6 @@ const NewInvoice = ({handleSubmit}) => {
                                     </div>
                                 </div>
                             </div>
-
                             <table className="table">
                                 <thead className="border-top border-bottom">
                                     <tr>
@@ -75,14 +72,12 @@ const NewInvoice = ({handleSubmit}) => {
                                         <th scope="col"></th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     <tr className="vh-10">
                                         <td>
                                             <InputTable />
                                         </td>
                                     </tr>
-
                                     <tr className="bg-warning">
                                         <td></td>
                                         <td></td>
@@ -91,7 +86,6 @@ const NewInvoice = ({handleSubmit}) => {
                                         <th className="text-end">£500.00</th>
                                     </tr>
                                 </tbody>
-
                             </table>
                         </div>
                         <div className="modal-footer">
@@ -99,7 +93,7 @@ const NewInvoice = ({handleSubmit}) => {
                             onClick={handleSubmit} >
                                 Create invoice
                             </button>
-                            <button type="button" className="btn btn-danger">Cancel invoice</button>
+                            <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cancel invoice</button>
                         </div>
                     </div>
                 </div>
