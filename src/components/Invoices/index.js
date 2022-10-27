@@ -2,7 +2,7 @@ import InvoiceCards from "./InvoiceCards";
 import NewInvoice from "./NewInvoice";
 import ViewInvoice from "./ViewInvoice";
 import {useEffect, useState} from "react";
-import DropdownElements from "./DropdownElements";
+import DropdownElements from "./DropDownElements";
 
 const Invoices = () => {
 
