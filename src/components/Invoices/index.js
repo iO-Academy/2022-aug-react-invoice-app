@@ -176,7 +176,7 @@ const Invoices = () => {
                 <main>
                     {invoices.map((invoice) => {
                             return (
-                                <InvoiceCards invoice={invoice} />
+                                <InvoiceCards handleCardClick={handleCardClick} invoice={invoice} key={invoice.id}/>
                                 );
                         })
                     }
