@@ -1,8 +1,33 @@
 // you will need to import dateFormatter via utils.js
 import ClientDropDown from "./ClientDropDown";
-import InputTable from "./InputTable";
+import NewInvoiceRows from "./NewInvoiceRows";
+import {useEffect, useState} from "react";
+
+const initialRowState = [
+    {description: '', qty: 0, rate: 0, total: 0},
+];
 
 const NewInvoice = ({handleSubmit}) => {
+
+    const [rowsState, setRowsState] = useState(initialRowState);
+
+    const handleCreateRow = (event) => {
+        event.preventDefault();
+        setRowsState([...rowsState, {description: '', qty: 0, rate: 0, total: 0}])
+    }
+
+    const handleDeleteRow = (index) => {
+        const newRowArray = rowsState.filter((element,idx) => {
+            return idx !== index;
+        });
+        setRowsState(newRowArray);
+    }
+
+    const handleDescriptionChange = (index, value) => {
+        console.log('change ' + index);
+        rowsState[index].description = value;
+        console.log(rowsState);
+    }
 
     const todayDate = Date.now();
     todayDate.toString();
@@ -23,7 +48,7 @@ const NewInvoice = ({handleSubmit}) => {
     return (
         <>
             <div id="newInvoiceModal" className="modal container end-0" tabIndex="-1">
-                <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+                <div className="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title fw-bold">New Invoice</h5>
@@ -73,11 +98,53 @@ const NewInvoice = ({handleSubmit}) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr className="vh-10">
-                                        <td>
-                                            <InputTable />
-                                        </td>
-                                    </tr>
+                                {rowsState.map((row, index) => {
+                                    return (
+                                        <tr className="mt-2">
+                                            <td>
+                                                <textarea
+                                                    className="form-control"
+                                                    rows="5"
+                                                    id="description"
+                                                    name="text"
+                                                    onChange={(event) => {
+                                                        handleDescriptionChange(event.target.value);
+                                                    }
+                                                    }
+                                                >
+                                                </textarea>
+                                            </td>
+                                            <td className="mb-3">
+                                                <input type="number" min="0" step="1" className="form-control" id="qty"/>
+                                            </td>
+                                            <td className="input mb-3" placeholder="0">
+                                                {/*<span className="input-group-text">£</span>*/}
+                                                <input type="number" min="0" step="1" className="form-control" id="rate"/>
+                                            </td>
+                                            <td>£</td>
+                                            <tr>
+                                                <td className="text-center">
+                                                    <button className="btn btn-success px-4 py-2 mb-3" type="submit" onClick={handleCreateRow}>+
+                                                    </button>
+                                                    <td>
+                                                        <button className="btn btn-danger px-4 py-2" type="submit" onClick={(event) => {
+                                                        event.preventDefault();
+                                                        handleDeleteRow(index);
+                                                    }}>-</button>
+                                                    </td>
+                                                </td>
+                                            </tr>
+                                        </tr>
+                                    );
+                                })}
+                                    {/*<NewInvoiceRows*/}
+                                    {/*    rowsState={rowsState}*/}
+                                    {/*    handleCreateRow={handleCreateRow}*/}
+                                    {/*    handleDeleteRow={handleDeleteRow}*/}
+                                    {/*    handleDescriptionChange={handleDescriptionChange}*/}
+                                    {/*/>*/}
+                                </tbody>
+                                <tfoot>
                                     <tr className="bg-warning">
                                         <td></td>
                                         <td></td>
@@ -85,7 +152,8 @@ const NewInvoice = ({handleSubmit}) => {
                                         <td></td>
                                         <th className="text-end">£500.00</th>
                                     </tr>
-                                </tbody>
+                                </tfoot>
+
                             </table>
                         </div>
                         <div className="modal-footer">
