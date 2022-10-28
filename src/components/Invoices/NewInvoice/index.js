@@ -121,7 +121,7 @@ const NewInvoice = ({handleSubmit}) => {
                                                 {/*<span className="input-group-text">£</span>*/}
                                                 <input type="number" min="0" step="1" className="form-control" id="rate"/>
                                             </td>
-                                            <td>£</td>
+                                            <td>£500.00</td>
                                             <tr>
                                                 <td className="text-center">
                                                     <button className="btn btn-success px-4 py-2 mb-3" type="submit" onClick={handleCreateRow}>+
