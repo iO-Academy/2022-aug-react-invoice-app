@@ -1,13 +1,53 @@
 import InvoiceCards from "./InvoiceCards";
 import NewInvoice from "./NewInvoice";
 import ViewInvoice from "./ViewInvoice";
-import {useState, useEffect} from "react";
-
+import {useEffect, useState} from "react";
 
 const Invoices = () => {
+    const detailedInvoice = {
+        data: {
+            id: "",
+            invoice_id: "",
+            name: "",
+            street_address: "",
+            city: "",
+            created: "",
+            due: "",
+            invoice_total: "",
+            paid_to_date: "",
+            status: "",
+            status_name: "",
+            details: [
+                {
+                    description: "",
+                    quantity: "",
+                    rate: "",
+                    total: ""
+                },
+            ]
+        }
+    }
+
+    const initialDetailsState = [];
+
+    const [detailedInvoiceState, setDetailedInvoiceState] = useState(detailedInvoice);
+    const [detailsState, setDetailsState] = useState(initialDetailsState);
+
+    const fetchDetailedInvoice = async (invoiceId) => {
+        const response = await fetch(`http://localhost:8080/invoices/${invoiceId}`);
+
+        return await response.json();
+    }
+
+    const handleCardClick = (id) => {
+        fetchDetailedInvoice(id)
+            .then((detailedInvoiceData) => {
+                setDetailedInvoiceState(detailedInvoiceData.data);
+                setDetailsState(detailedInvoiceData.data.details);
+            })
+    }
 
     const [invoices, setInvoices] = useState([]);
-
     // --- fetch invoices and returns json promise ---
     const extractResponseData = (response) => {
         return response.json();
@@ -91,7 +131,7 @@ const Invoices = () => {
 
     return (
         <>
-            <ViewInvoice />
+            <ViewInvoice detailedInvoiceState={detailedInvoiceState} detailsState={detailsState}/>
             <NewInvoice handleSubmit={handleSubmit}/>
             <div className="py-5 px-3">
                 <header className="d-flex justify-content-between align-items-end flex-wrap pt-3 px-0">
