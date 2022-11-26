@@ -11,15 +11,37 @@ const NewInvoice = () => {
         [{description: '', qty: 0, rate: 0, total: 0}]
     );
 
+    const [rowCountState, setRowCountState] = useState(0);
+
+    // const updateRowCountState = (addOrRemove) => {
+    //     if (addOrRemove == '-') {
+    //         setRowCountState((prevRowCountState) => {
+    //             prevRowCountState -= 1;
+    //         })
+    //     } else {
+    //         setRowCountState((prevRowCountState) => {
+    //             prevRowCountState += 1;
+    //         })
+    //     }
+    //     console.log(rowCountState);
+    // }
+
     const handleCreateRow = (event) => {
+        setRowCountState(rowCountState + 1)
+        console.log(rowCountState)
         setDetails([...details, {description: '', qty: 0, rate: 0, total: 0}])
     }
 
     const handleDeleteRow = (index) => {
-        const newDetails = details.filter((element, idx) => {
-            return idx !== index;
-        });
-        setDetails(newDetails);
+        if (rowCountState > 0) {
+            setRowCountState(rowCountState - 1);
+            console.log(rowCountState)
+            const newDetails = details.filter((element, idx) => {
+                    return idx !== index;
+                }
+            );
+            setDetails(newDetails);
+        }
     }
 
     const updateDetails = (rowNum, newDescription, newQuantity, newRate) => {
@@ -83,10 +105,7 @@ const NewInvoice = () => {
                                         <li>California</li>
                                     </ul>
                                     <h6><strong>To</strong></h6>
-                                    {/*<ul className="list-unstyled">*/}
-                                    {/*    <li>Fiona</li>*/}
-                                        <ClientDropDown clientsState={client} setClients={setClient} />
-                                    {/*</ul>*/}
+                                    <ClientDropDown clientsState={client} setClients={setClient} />
                                 </div>
                                 <div className="pe-5 d-flex flex-column">
                                     <h6><strong>Status</strong></h6>
