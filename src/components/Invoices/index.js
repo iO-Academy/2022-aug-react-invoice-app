@@ -90,7 +90,7 @@ const Invoices = () => {
         "client": parseInt(selectedClient),
         "total": total,
         "details":
-            details.map((row, index) => {
+            details.map((row) => {
             return (
 
                 {
