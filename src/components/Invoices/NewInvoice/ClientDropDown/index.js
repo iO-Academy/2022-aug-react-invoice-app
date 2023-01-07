@@ -1,7 +1,8 @@
 import {useEffect, useState} from "react";
 import ClientNameForDropdown from "./ClientNameForDropdown";
 
-const ClientDropDown = () => {
+const ClientDropDown = (props) => {
+    const {selectedClient, setSelectedClient} = props;
     const [clientsState, setClients] = useState({});
 
     // --- fetch clients and returns json promise ---
@@ -31,7 +32,7 @@ const ClientDropDown = () => {
 
     // the following needs to be added to the modal and to update the client ID in post request
     const handleNameChange = (e) => {
-        console.log(e.target.value);
+        setSelectedClient(e.target.value);
     }
 
     return (

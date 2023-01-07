@@ -1,7 +1,7 @@
 import InvoiceCards from "./InvoiceCards";
 import NewInvoice from "./NewInvoice";
 import ViewInvoice from "./ViewInvoice";
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useMemo, useState} from "react";
 
 const Invoices = () => {
     const detailedInvoice = {
@@ -28,10 +28,13 @@ const Invoices = () => {
         }
     }
 
-    const initialDetailsState = [];
-
+    const [selectedClient, setSelectedClient] = useState(-1);
+    const [total, setTotal] = useState(0);
+    const [details, setDetails] = useState(
+        [{description: '', qty: 0, rate: 0, total: 0}]
+    );
     const [detailedInvoiceState, setDetailedInvoiceState] = useState(detailedInvoice);
-    const [detailsState, setDetailsState] = useState(initialDetailsState);
+    const [detailsState, setDetailsState] = useState([]);
 
     const fetchDetailedInvoice = async (invoiceId) => {
         const response = await fetch(`http://localhost:8080/invoices/${invoiceId}`);
@@ -61,8 +64,8 @@ const Invoices = () => {
         return await extractResponseData(response);
     }
 
-    // --- on mount logs the data retrieved ---
-    useEffect( () => {
+    const updateInvoices = useCallback(() => {
+
         fetchInvoices()
             .then((invoiceData) => {
                 setInvoices(invoiceData.data);
@@ -70,25 +73,36 @@ const Invoices = () => {
             .catch((err) => {
                 err.message = 'Error! Could not resolve promise.';
             });
-    });
+
+    }, [invoices]);
+
+    // --- on mount logs the data retrieved ---
+    useEffect( () => {
+        updateInvoices()
+    }, []);
 
     // --- filtered unpaid invoices ---
     const filteredInvoices = invoices.filter(invoice => invoice.status === "2");
     const unpaidInvoices = filteredInvoices.length;
 
     // hardcoded data to submit on POST
-    const newInvoice = {
-        "client": 2,
-        "total": 1234,
-        "details": [
-            {
-                "quantity": 2,
-                "rate": 617,
-                "total": 1234,
-                "description": "Optional text field"
-            }
-        ]
-    };
+    const newInvoice = useMemo(() => ({
+        "client": parseInt(selectedClient),
+        "total": total,
+        "details":
+            details.map((row, index) => {
+            return (
+
+                {
+                "quantity": Number(row.qty),
+                "rate": Number(row.rate),
+                "total": row.total,
+                "description": row.description
+                }
+            )
+            })
+
+    }), [details]);
 
     // --- Send POST request to invoices database and returns json promise ---
     const postNewInvoice = async (data) => {
@@ -102,6 +116,7 @@ const Invoices = () => {
         if (!response.ok) {
             throw new Error();
         }
+        updateInvoices();
         return await extractResponseData(response);
     }
 
@@ -132,7 +147,15 @@ const Invoices = () => {
     return (
         <>
             <ViewInvoice detailedInvoiceState={detailedInvoiceState} detailsState={detailsState}/>
-            <NewInvoice handleSubmit={handleSubmit}/>
+            <NewInvoice
+                selectedClient={selectedClient}
+                setSelectedClient={setSelectedClient}
+                total={total}
+                setTotal={setTotal}
+                details={details}
+                setDetails={setDetails}
+                handleSubmit={handleSubmit}
+            />
             <div className="py-5 px-3">
                 <header className="d-flex justify-content-between align-items-end flex-wrap pt-3 px-0">
                     <div>

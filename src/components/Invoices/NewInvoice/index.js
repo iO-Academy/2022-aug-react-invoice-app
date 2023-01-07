@@ -2,40 +2,20 @@ import {dateFormatter} from "../../../helpers/utils";
 import ClientDropDown from "./ClientDropDown";
 
 import {useEffect, useState} from "react";
-import NewInvoiceRows from "./NewInvoiceRows";
 
-const NewInvoice = () => {
-    const [client, setClient] = useState(-1);
-    const [total, setTotal] = useState(0);
-    const [details, setDetails] = useState(
-        [{description: '', qty: 0, rate: 0, total: 0}]
-    );
-
+const NewInvoice = (props) => {
     const [rowCountState, setRowCountState] = useState(0);
 
-    // const updateRowCountState = (addOrRemove) => {
-    //     if (addOrRemove == '-') {
-    //         setRowCountState((prevRowCountState) => {
-    //             prevRowCountState -= 1;
-    //         })
-    //     } else {
-    //         setRowCountState((prevRowCountState) => {
-    //             prevRowCountState += 1;
-    //         })
-    //     }
-    //     console.log(rowCountState);
-    // }
+    const {selectedClient, setSelectedClient, total, setTotal, details, setDetails, handleSubmit} = props;
 
     const handleCreateRow = (event) => {
         setRowCountState(rowCountState + 1)
-        console.log(rowCountState)
         setDetails([...details, {description: '', qty: 0, rate: 0, total: 0}])
     }
 
     const handleDeleteRow = (index) => {
         if (rowCountState > 0) {
             setRowCountState(rowCountState - 1);
-            console.log(rowCountState)
             const newDetails = details.filter((element, idx) => {
                     return idx !== index;
                 }
@@ -105,7 +85,10 @@ const NewInvoice = () => {
                                         <li>California</li>
                                     </ul>
                                     <h6><strong>To</strong></h6>
-                                    <ClientDropDown clientsState={client} setClients={setClient} />
+                                    <ClientDropDown
+                                        selectedClient={selectedClient}
+                                        setSelectedClient={setSelectedClient}
+                                    />
                                 </div>
                                 <div className="pe-5 d-flex flex-column">
                                     <h6><strong>Status</strong></h6>
@@ -193,7 +176,7 @@ const NewInvoice = () => {
                     </div>
 
                     <div className="modal-footer">
-                        <button type="button" className="btn btn-success">Create invoice</button>
+                        <button type="button" className="btn btn-success" data-bs-dismiss="modal" onClick={handleSubmit}>Create invoice</button>
                         <button type="button" className="btn btn-danger" data-bs-dismiss="modal">Cancel invoice</button>
                     </div>
                 </div>
