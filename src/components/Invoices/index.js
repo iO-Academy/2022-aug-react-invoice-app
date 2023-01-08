@@ -1,7 +1,7 @@
 import InvoiceCards from "./InvoiceCards";
 import NewInvoice from "./NewInvoice";
 import ViewInvoice from "./ViewInvoice";
-import {useCallback, useEffect, useMemo, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 
 const Invoices = () => {
     const detailedInvoice = {
@@ -85,24 +85,6 @@ const Invoices = () => {
     const filteredInvoices = invoices.filter(invoice => invoice.status === "2");
     const unpaidInvoices = filteredInvoices.length;
 
-    // hardcoded data to submit on POST
-    const newInvoice = useMemo(() => ({
-        "client": parseInt(selectedClient),
-        "total": total,
-        "details":
-            details.map((row) => {
-            return (
-
-                {
-                "quantity": Number(row.qty),
-                "rate": Number(row.rate),
-                "total": row.total,
-                "description": row.description
-                }
-            )
-            })
-
-    }), [details]);
 
     // --- Send POST request to invoices database and returns json promise ---
     const postNewInvoice = async (data) => {
@@ -122,9 +104,25 @@ const Invoices = () => {
 
     // --- handles newInvoice submission ---
     const handleSubmit = () => {
-        postNewInvoice(newInvoice)
+        postNewInvoice({
+            "client": parseInt(selectedClient),
+            "total": total,
+            "details":
+                details.map((row) => {
+                    return (
+
+                        {
+                            "quantity": Number(row.qty),
+                            "rate": Number(row.rate),
+                            "total": row.total,
+                            "description": row.description
+                        }
+                    )
+                })
+
+        })
             .then((res) => {
-                // --- hardcoded data to update invoices State ---
+                // --- data to update invoices State ---
                 const newInvoiceDetails = {
                     id: res.data.id,
                     invoice_id: res.data.invoice_id,
