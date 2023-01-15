@@ -141,6 +141,11 @@ const Invoices = () => {
             });
     }
 
+    const sortByReference = [...invoices].sort((a, b) => a.invoice_id - b.invoice_id);
+    const sortByTotal = [...invoices].sort((a, b) => b.invoice_total - a.invoice_total);
+    const sortByDate = [...invoices].sort((a,b) => a.due - b.due);
+
+    const [sortState, setSortState] = useState(invoices);
 
     return (
         <>
@@ -167,10 +172,14 @@ const Invoices = () => {
                                 Sort By
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a className="dropdown-item fs-6" href="#">Invoice Reference</a></li>
-                                <li><a className="dropdown-item fs-6" href="#">Invoice Total</a></li>
-                                <li><a className="dropdown-item fs-6" href="#">Date Created</a></li>
-                                <li><a className="dropdown-item fs-6" href="#">Date Due</a></li>
+                                <li className="dropdown-item fs-6"
+                                    onClick={() => {setSortState(sortByReference)}}>Invoice Reference</li>
+                                <li className="dropdown-item fs-6"
+                                    onClick={() => {setSortState(sortByTotal)}}>Invoice Total</li>
+                                <li className="dropdown-item fs-6"
+                                    onClick={() => {setSortState(sortByDate)}}>Date Created</li>
+                                <li className="dropdown-item fs-6"
+                                    onClick={() => {setSortState(sortByDate)}}>Date Due</li>
                             </ul>
                         </div>
                         <div className="dropdown">
@@ -195,7 +204,7 @@ const Invoices = () => {
                     </div>
                 </header>
                 <main>
-                    {invoices.map((invoice) => {
+                    {sortState.map((invoice) => {
                             return (
                                 <InvoiceCards handleCardClick={handleCardClick} invoice={invoice} key={invoice.id}/>
                                 );
