@@ -196,10 +196,10 @@ const Invoices = () => {
                 </header>
                 <main>
                     {invoices.map((invoice) => {
-                        return (
-                            <InvoiceCards handleCardClick={handleCardClick} invoice={invoice} key={invoice.id}/>
-                        );
-                    })
+                            return (
+                                <InvoiceCards handleCardClick={handleCardClick} invoice={invoice} key={invoice.id}/>
+                                );
+                        })
                     }
                 </main>
                 <footer>
