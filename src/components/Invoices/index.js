@@ -81,10 +81,12 @@ const Invoices = () => {
         updateInvoices()
     }, []);
 
-    // --- filtered unpaid invoices ---
-    const filteredInvoices = invoices.filter(invoice => invoice.status === "2");
-    const unpaidInvoices = filteredInvoices.length;
+    // --- filter invoices ---
+    const filterInvoices = (status) => {
+        return invoice => invoice.status === status
+    };
 
+    const unpaidInvoicesCount = invoices.filter(invoice => invoice.status === "2").length;
 
     // --- Send POST request to invoices database and returns json promise ---
     const postNewInvoice = async (data) => {
@@ -141,11 +143,23 @@ const Invoices = () => {
             });
     }
 
-    const sortByReference = [...invoices].sort((a, b) => a.invoice_id - b.invoice_id);
-    const sortByTotal = [...invoices].sort((a, b) => b.invoice_total - a.invoice_total);
-    const sortByDate = [...invoices].sort((a,b) => a.due - b.due);
+    const [filteredInvoiceState, setFilteredInvoiceState] = useState(invoices);
+
+
+    const sortByReference = [...filteredInvoiceState].sort((a, b) => a.invoice_id - b.invoice_id);
+    const sortByTotal = [...filteredInvoiceState].sort((a, b) => b.invoice_total - a.invoice_total);
+    const sortByDate = [...filteredInvoiceState].sort((a,b) => a.due - b.due);
 
     const [sortState, setSortState] = useState(invoices);
+
+    useEffect(() => {
+        setFilteredInvoiceState(invoices)
+    }, [invoices])
+
+    useEffect(() => {
+        console.log(filteredInvoiceState)
+        setSortState(filteredInvoiceState)
+    }, [invoices, filteredInvoiceState])
 
     return (
         <>
@@ -163,7 +177,7 @@ const Invoices = () => {
                 <header className="d-flex justify-content-between align-items-end flex-wrap pt-3 px-0">
                     <div>
                         <h1 className="fw-bolder">Invoices</h1>
-                        <p>There are {unpaidInvoices} unpaid invoices</p>
+                        <p>There are {unpaidInvoicesCount} unpaid invoices</p>
                     </div>
                     <div className="d-flex justify-content-between py-3">
                         <div className="dropdown">
@@ -188,11 +202,21 @@ const Invoices = () => {
                                 Filter By Status
                             </button>
                             <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a className="dropdown-item fs-6" href="#">Paid</a></li>
-                                <li><a className="dropdown-item fs-6" href="#">Pending</a></li>
-                                <li><a className="dropdown-item fs-6" href="#">Cancelled</a></li>
-                                <li><a className="dropdown-item fs-6" href="#">Overdue</a></li>
-                                <li><a className="dropdown-item fs-6" href="#">View All</a></li>
+                                <li className="dropdown-item fs-6"
+                                    onClick={() => {setFilteredInvoiceState(invoices.filter(filterInvoices("1")))}}
+                                >Paid</li>
+                                <li className="dropdown-item fs-6"
+                                    onClick={() => {setFilteredInvoiceState(invoices.filter(filterInvoices("2")))}
+                                }>Pending</li>
+                                <li className="dropdown-item fs-6"
+                                    onClick={() => {setFilteredInvoiceState(invoices.filter(filterInvoices("3")))}}
+                                >Cancelled</li>
+                                <li className="dropdown-item fs-6"
+                                    onClick={() => {setFilteredInvoiceState(invoices.filter(filterInvoices("4")))}}
+                                >Overdue</li>
+                                <li className="dropdown-item fs-6"
+                                    onClick={() => {setFilteredInvoiceState(invoices)}}
+                                >View All</li>
                             </ul>
                         </div>
                         <p>
