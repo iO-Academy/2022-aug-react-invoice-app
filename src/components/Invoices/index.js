@@ -157,7 +157,6 @@ const Invoices = () => {
     }, [invoices])
 
     useEffect(() => {
-        console.log(filteredInvoiceState)
         setSortState(filteredInvoiceState)
     }, [invoices, filteredInvoiceState])
 
